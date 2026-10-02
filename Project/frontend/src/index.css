@@ -1,0 +1,22 @@
+/* Tailwind v4 without its preflight reset: the legacy stylesheet already
+   provides the base styles, and preflight would subtly change them.
+   Legacy CSS sits in the "components" layer so Tailwind utilities can
+   still override it. */
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "./styles/legacy.css" layer(components);
+@import "./styles/tokens.css" layer(components);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+@theme inline {
+  --color-bg: var(--paper-100);
+  --color-surface: var(--white);
+  --color-surface-2: var(--paper-200);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+  --color-fg: var(--text-primary);
+  --color-fg-muted: var(--text-secondary);
+}

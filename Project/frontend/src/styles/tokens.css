@@ -1,0 +1,40 @@
+/* =========================================================
+   Design tokens — the CRM dark palette.
+   Overrides the colour variables of legacy.css (the original
+   prototype stylesheet) so the whole UI repaints from one place.
+   ========================================================= */
+:root {
+  /* surfaces */
+  --ink-900: #080a0d;
+  --ink-800: #101318;
+  --ink-700: #151920;
+  --ink-600: #252b33;
+  --paper-100: #080a0d;   /* main background */
+  --paper-050: #151920;   /* topbar, table head, hovered rows, drawers */
+  --paper-200: #151920;   /* wells: kanban columns, skeletons */
+  --white: #101318;       /* cards, inputs, modals */
+  --line: #252b33;
+  --line-strong: #323a44;
+  --grid-line: #1a2027;
+  --on-accent: #080a0d;
+
+  /* accent + semantic colours */
+  --accent: #55ddf2;
+  --accent-600: #72e6f5;  /* hover */
+  --accent-100: rgba(85, 221, 242, 0.14);
+  --success: #39e681;
+  --success-100: rgba(57, 230, 129, 0.14);
+  --warning: #f5c451;
+  --warning-100: rgba(245, 196, 81, 0.14);
+  --danger: #f06a6a;
+  --danger-100: rgba(240, 106, 106, 0.14);
+
+  /* text */
+  --text-primary: #f1f3f5;
+  --text-secondary: #8b95a5;
+  --text-muted: #6c7686;
+  --nav-inactive: #89919f;
+}
+
+.nav-item { color: var(--nav-inactive); }
+.nav-item.active { color: var(--accent); }

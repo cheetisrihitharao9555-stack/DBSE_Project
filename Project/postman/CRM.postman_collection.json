@@ -1,0 +1,48 @@
+{
+  "info": {
+    "name": "CRM API",
+    "description": "Postman collection for the CRM Spring Boot API. Requests are added phase by phase.\n\nHow to use the JWT (available from Phase 2):\n1. Run Auth > Login. The test script stores the token in the {{token}} collection variable.\n2. Every protected request uses the collection-level Bearer auth ({{token}}) automatically.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [{ "key": "token", "value": "{{token}}", "type": "string" }]
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:8080/api" },
+    { "key": "token", "value": "" }
+  ],
+  "item": [
+    {
+      "name": "System",
+      "item": [
+        {
+          "name": "Health check",
+          "request": {
+            "auth": { "type": "noauth" },
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/health", "host": ["{{baseUrl}}"], "path": ["health"] },
+            "description": "Public endpoint. Expected: 200 with {\"status\":\"UP\",\"database\":\"UP\",...}"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+                  "pm.test('API and database are UP', () => {",
+                  "  const body = pm.response.json();",
+                  "  pm.expect(body.status).to.eql('UP');",
+                  "  pm.expect(body.database).to.eql('UP');",
+                  "});"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
